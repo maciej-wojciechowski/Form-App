@@ -3,6 +3,7 @@ import styled from "styled-components";
 import GlobalStyle from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./Theme";
+import { MyContext } from "./Context";
 // Router
 import { Switch, Route, useLocation, Link } from "react-router-dom";
 // Pages
@@ -12,8 +13,9 @@ import SentPage from "./pages/SentPage";
 import PrivacyPage from "./pages/PrivacyPage";
 // Components
 import AppBar from "./components/AppBar";
+import { Switch as MuiSwitch } from "@material-ui/core";
 
-import { MyContext } from "./Context";
+import { ToastContainer } from "react-toastify";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -38,6 +40,7 @@ const App: React.FC = () => {
           value={{ state, setState, clockState, setClockState }}>
           <GlobalStyle />
           <AppBar />
+          <ToastContainer position="top-center" />
           <Switch location={location} key={location.pathname}>
             <Route path="/" exact>
               <IndexPage />
@@ -59,7 +62,7 @@ const App: React.FC = () => {
             <Link to="/privacy">
               <button>Privacy Terms</button>
             </Link>
-            <button onClick={themeToggler}>Toggler</button>
+            <MuiSwitch color="primary" onChange={themeToggler} />
           </div>
         </MyContext.Provider>
       </ThemeProvider>
@@ -73,7 +76,6 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     button {
       margin: 0 0.5rem;
     }

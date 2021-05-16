@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { MyContext } from "../Context";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const FormPage: React.FC = () => {
   const { state, setState, clockState } = useContext(MyContext);
-
   const history = useHistory();
-
   const getData = async () => {
     const response = await fetch(
       "https://baconipsum.com/api/?type=all-meat&paras=2"
@@ -23,7 +24,7 @@ const FormPage: React.FC = () => {
   useEffect(() => {
     getData();
     if (state.facility === "") {
-      alert("You need to choose facility first...");
+      toast.error("Please choose facility first...!");
       history.push("/");
     }
     // eslint-disable-next-line
@@ -39,7 +40,7 @@ const FormPage: React.FC = () => {
       (30 <= seconds && seconds <= 39) ||
       (50 <= seconds && seconds <= 59);
     if (wrongTime) {
-      alert("Error, our servers don't work :(");
+      toast.error("Oops, looks like we have a problem :( ... Try Again.");
     } else {
       let localMessages;
       const LOCAL = "local";
