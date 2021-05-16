@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { MyContext } from "../Context";
 
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const FormPage: React.FC = () => {
   const { state, setState, clockState } = useContext(MyContext);
   const history = useHistory();
@@ -24,7 +21,7 @@ const FormPage: React.FC = () => {
   useEffect(() => {
     getData();
     if (state.facility === "") {
-      toast.error("Please choose facility first...!");
+      alert("Please choose facility first...!");
       history.push("/");
     }
     // eslint-disable-next-line
@@ -40,7 +37,7 @@ const FormPage: React.FC = () => {
       (30 <= seconds && seconds <= 39) ||
       (50 <= seconds && seconds <= 59);
     if (wrongTime) {
-      toast.error("Oops, looks like we have a problem :( ... Try Again.");
+      alert("Oops, looks like we have a problem :( ... Try Again.");
     } else {
       let localMessages;
       const LOCAL = "local";

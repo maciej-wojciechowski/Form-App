@@ -28,8 +28,15 @@ const PrivacyPage: React.FC = () => {
 };
 
 const Wrapper = styled.div`
-  > * {
-    font-size: larger;
+  padding: 1rem;
+  ol {
+    margin: 0 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    li {
+      margin: 0.5rem 0;
+    }
   }
 `;
 

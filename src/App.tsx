@@ -15,8 +15,6 @@ import PrivacyPage from "./pages/PrivacyPage";
 import AppBar from "./components/AppBar";
 import { Switch as MuiSwitch } from "@material-ui/core";
 
-import { ToastContainer } from "react-toastify";
-
 const App: React.FC = () => {
   const location = useLocation();
   const [theme, setTheme] = useState("light");
@@ -34,13 +32,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper className="App">
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <MyContext.Provider
           value={{ state, setState, clockState, setClockState }}>
           <GlobalStyle />
           <AppBar />
-          <ToastContainer position="top-center" />
           <Switch location={location} key={location.pathname}>
             <Route path="/" exact>
               <IndexPage />

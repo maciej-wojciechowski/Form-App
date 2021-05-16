@@ -8,7 +8,9 @@ const SentPage: React.FC = () => {
   const { state } = useContext(MyContext);
 
   useEffect(() => {
-    if (state.facility === "" || state.email === "" || state.message === "") {
+    const STATE_IS_EMPTY =
+      state.facility === "" || state.email === "" || state.message === "";
+    if (STATE_IS_EMPTY) {
       alert("Error with form...");
       history.push("/");
     }

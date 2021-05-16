@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { MyContext } from "../Context";
 
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const IndexPage: React.FC = () => {
   const { state, setState } = useContext(MyContext);
   useEffect(
@@ -24,12 +21,12 @@ const IndexPage: React.FC = () => {
     if (state.facility !== "") {
       history.push("/form");
     } else {
-      toast.error("Please choose facility first...!");
+      alert('"Please choose facility first...!"');
     }
   };
   return (
     <Wrapper className="main-content">
-      <form className="facility-form" onSubmit={submitHandler} noValidate>
+      <form className="facility-form" onSubmit={submitHandler}>
         <div className="label-container">
           <label>Facility: </label>
           <select onChange={facilityHandler} value={state.facility} required>
